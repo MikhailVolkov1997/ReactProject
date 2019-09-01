@@ -3,6 +3,18 @@
       grid-template-columns: 2fr 10fr;
 }
 
-.dialog {
+.message {
+      background-color: antiquewhite;
+      width:600px;
+      height:30px ;
+      border-radius: 20px;
+      margin-top: 10px;
+      padding-bottom: 10px;
+      
+}
+.message img  {
+      width: 30px;
+      border-radius: 20px;
 
 }
+

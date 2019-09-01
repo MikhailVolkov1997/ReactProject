@@ -5,7 +5,9 @@ const Message = (props) => {
 
     return (
            <div className={classes.message} >
+                  {props.avatar}
                   {props.messege}
+                  
            </div>
 
     )

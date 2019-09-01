@@ -11,6 +11,13 @@ const Sitebar = () => {
         <a>Music</a>
         <a>Video</a>
         <a>Settings</a>
+        <a className={classes.friends}>Friends
+        <div>
+        <img src="https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" />
+        <img src="https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" />
+        <img src="https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" />
+        </div>
+        </a>
       </div>
     )
 }

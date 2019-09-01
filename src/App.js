@@ -7,14 +7,15 @@ import Dialogs from "./Components/Dialogs/Dialogs"
 import {BrowserRouter, Route} from "react-router-dom"
 
 function App(props) {
+  
   return (
     <BrowserRouter>
     <body className="grid">
        <Header />
        <Sitebar />
     <div className="app-wrapper-content">
-        <Route path="/Content" render={ () => <Content post={props.post}/>} />
-        <Route path="/Dialogs" render={ () => <Dialogs dialogs={props.dialogs} messeges={props.message} />} />
+        <Route path="/Content" render={ () => <Content post={props.state.ArrayPosts}/>} />
+        <Route path="/Dialogs" render={ () => <Dialogs dialogs={props.state.ArrayDialogs} messeges={props.state. ArrayMesseges} />} />
     </div>
       
     </body>
