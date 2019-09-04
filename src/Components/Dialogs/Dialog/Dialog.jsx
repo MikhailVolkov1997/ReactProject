@@ -7,9 +7,13 @@
               let path = "/Dialogs/" + props.id
 
                return (
+                      <div>
                      <div className={classes.dialog} >
                             <NavLink to={path}>{props.name}</NavLink>
                      </div>
+                         
+                     </div>
+
               )
   }
 
