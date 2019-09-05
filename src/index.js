@@ -1,9 +1,27 @@
 
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import App from './App';
     import * as serviceWorker from './serviceWorker';
-    import State from "./State"
-    import {Render} from "./render"
+    import store from "./Redux/redux-store" 
 
-    Render(State);
+    let Render = (state) => {
+    ReactDOM.render(<App state={state}
+         dispatch={store.dispatch.bind(store)} />,
+        document.getElementById('root'));
+    }
 
-    serviceWorker.unregister();
+    Render(store.getState());
+
+
+    store.subscribe( () => {
+        let state = store.getState();
+        Render(state);
+    });
+
+     serviceWorker.unregister();
+    
+    
+
+    
 

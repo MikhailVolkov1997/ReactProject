@@ -8,7 +8,7 @@ import {BrowserRouter, Route} from "react-router-dom"
 
 
 function App(props) {
-  
+  debugger
   return (
     <BrowserRouter>
     <body className="grid">
@@ -16,15 +16,13 @@ function App(props) {
        <Sitebar />
     <div className="app-wrapper-content">
         <Route path="/Content" render={ () => <Content post={props.state.ArrayPosts} 
-            AddPost={props.addPost} 
-            updatePost={props.updatePost}
-            textPost={props.state.text}
+            Newpost={props.state.ArrayPosts.text}
+            dispatch = {props.dispatch}
             />} />
-        <Route path="/Dialogs" render={ () => <Dialogs dialogs={props.state.ArrayDialogs} 
-            messeges={props.state. ArrayMesseges} 
-            addMessege={props.addMessege}
-            updateNewMessege={props.updateNewMessege}
-            textMessege={props.state.messege}/>} />
+        <Route path="/Dialogs" render={ () => <Dialogs dialogs={props.state.ArrayMesseges.ArrayDialogs} 
+            messeges={props.state.ArrayMesseges.ArrayMesseges} 
+            dispatch = {props.dispatch}
+            Newmessege={props.state.ArrayMesseges.messege}/>} />
     </div>
       
     </body>

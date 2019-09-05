@@ -2,7 +2,7 @@
        import classes from "./Dialogs.module.css"
        import Message from "./Message/Message"
        import Dialog from "./Dialog/Dialog"
-       
+       import {AddMessegeActionCreate, updateNewMessegeActionCreate} from "./../../Redux/Messeges"
       
       
       
@@ -13,13 +13,13 @@
               const MessageDate = props.messeges.map(message => <Message avatar ={Img} messege={message.message} />)
               
               let ElemntTextarea = React.createRef();  
-
+              debugger
               let addMessege = () => {
-                  props.addMessege();
+                  props.dispatch(AddMessegeActionCreate());
               }
              let onChangeDialogs = () => {
               let text = ElemntTextarea.current.value;
-              props.updateNewMessege(text);
+              props.dispatch(updateNewMessegeActionCreate(text));
              }
               
        return (
@@ -30,7 +30,7 @@
                      <div className={classes.messanges} >
                             {MessageDate}
                             <div className={classes.addedMessege}>
-                            <textarea ref = {ElemntTextarea} value={props.textMessege} onChange={onChangeDialogs}></textarea>
+                            <textarea ref = {ElemntTextarea} value={props.Newmessege} onChange={onChangeDialogs}></textarea>
                             <div>
                             <button onClick={addMessege}>Add message</button>
                             </div>
