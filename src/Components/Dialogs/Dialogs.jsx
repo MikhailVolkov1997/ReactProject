@@ -8,13 +8,14 @@
       
       
       const Dialogs = (props) => {
+             
               const Img = <img src = "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" />
               const DialogDate = props.dialogs.map(dialog => <Dialog name={dialog.name} id={dialog.id} />)
-              const MessageDate = props.messeges.map(message => <Message avatar ={Img} messege={message.message} />)
+              const MessageDate = props.messages.map(message => <Message avatar ={Img} message={message.message} />)
               
               let ElemntTextarea = React.createRef();  
               debugger
-              let addMessege = () => {
+              let addMessage = () => {
                   props.dispatch(AddMessegeActionCreate());
               }
              let onChangeDialogs = () => {
@@ -30,9 +31,9 @@
                      <div className={classes.messanges} >
                             {MessageDate}
                             <div className={classes.addedMessege}>
-                            <textarea ref = {ElemntTextarea} value={props.Newmessege} onChange={onChangeDialogs}></textarea>
+                            <textarea ref = {ElemntTextarea} value={props.Newmessage} onChange={onChangeDialogs}></textarea>
                             <div>
-                            <button onClick={addMessege}>Add message</button>
+                            <button onClick={addMessage}>send message</button>
                             </div>
                      </div> 
                      </div>

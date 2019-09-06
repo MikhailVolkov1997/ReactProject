@@ -1,7 +1,7 @@
     const ADD_POST = 'ADD-POST';
     const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-    let initialReducer = { ArrayPosts : [
+    let initialReducer = { arrayPosts : [
         { id: 1,avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
         
         {id:2, avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
@@ -20,7 +20,7 @@
                         avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png",
                         message: state.text
                     }
-                    state.ArrayPosts.push(add);
+                    state.arrayPosts.push(add);
                    
                     state.text="";
                     return state;

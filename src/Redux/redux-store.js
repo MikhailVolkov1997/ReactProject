@@ -1,12 +1,12 @@
 import {createStore, combineReducers} from "redux"
-import messegesReducer from './Messeges'
+import messagesReducer from './Messeges'
 import postReducer from "./Posts"
 
 
 
 let reducers = combineReducers({
-    ArrayMesseges:messegesReducer,
-    ArrayPosts:postReducer
+    dataMessages:messagesReducer,
+    dataPosts:postReducer
 });
 let store = createStore(reducers);
 

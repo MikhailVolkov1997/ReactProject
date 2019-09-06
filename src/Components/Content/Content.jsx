@@ -19,7 +19,7 @@ const Content = (props) => {
         props.dispatch(UpdateNewPostTextActionCreate(text));
     }
 
-    const PostDate = props.post.ArrayPosts.map(post => <Post avatar={post.avatar} message={post.message}/> )
+    const PostDate = props.post.arrayPosts.map(post => <Post avatar={post.avatar} message={post.message}/> )
     return (
       <div className={classes.content}>
           <img src="http://s3.amazonaws.com/images.seroundtable.com/google-css-images-1515761601.jpg" />

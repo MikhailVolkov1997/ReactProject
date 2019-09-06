@@ -7,7 +7,7 @@ const Message = (props) => {
            <div>
            <div className={classes.message} >
                   {props.avatar}
-                  {props.messege}
+                  {props.message}
                   
                   
            </div>

@@ -1,12 +1,12 @@
-const ADD_MESSEGE = 'ADD-MESSEGE';
-const UPDATE_NEW_MESSEGE = 'UPDATE-NEW-MESSEGE';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
 
-let initialReducer = {ArrayMesseges : [
+let initialReducer = {arrayMessages : [
     { message:"Hello"},
     { message:"Bay"},
     { message:"Learn react"}
 ],
-ArrayDialogs : [
+arrayDialogs : [
     {name:"Mikhail",id:1},
     {name:"Sergei",id:2},
     {name:"Olga",id:3},
@@ -15,20 +15,20 @@ ArrayDialogs : [
     {name:"Vadim",id:6}
 
 ],
-messege:"Hi,"}
+message:"Hi,"}
 
-const messegesReducer = (state = initialReducer, action) => {
+const messagesReducer = (state = initialReducer, action) => {
    switch (action.type ) {
-       case ADD_MESSEGE:  
+       case ADD_MESSAGE:  
        let add = {
-        message:state.messege
+        message:state.message
         }
-    state.ArrayMesseges.push(add);
+    state.arrayMessages.push(add);
     
-    state.messege = "";
+    state.message = "";
         return state;
-     case UPDATE_NEW_MESSEGE: 
-     state.messege = action.newText;
+     case UPDATE_NEW_MESSAGE: 
+     state.message = action.newText;
         return state;
      default: return state;
     } 
@@ -36,16 +36,16 @@ const messegesReducer = (state = initialReducer, action) => {
 export const AddMessegeActionCreate = () => {
     return (
         {
-            type:ADD_MESSEGE
+            type:ADD_MESSAGE
         }
     ) 
 }
 export const updateNewMessegeActionCreate = (text) => {
     return (
         {
-            type:UPDATE_NEW_MESSEGE,
+            type:UPDATE_NEW_MESSAGE,
             newText:text
         }
     ) 
 }
-export default messegesReducer;
+export default messagesReducer;

@@ -8,21 +8,21 @@ import {BrowserRouter, Route} from "react-router-dom"
 
 
 function App(props) {
-  debugger
+  
   return (
     <BrowserRouter>
     <body className="grid">
        <Header />
        <Sitebar />
     <div className="app-wrapper-content">
-        <Route path="/Content" render={ () => <Content post={props.state.ArrayPosts} 
-            Newpost={props.state.ArrayPosts.text}
+        <Route path="/Content" render={ () => <Content post={props.state.dataPosts} 
+            Newpost={props.state.dataPosts.text}
             dispatch = {props.dispatch}
             />} />
-        <Route path="/Dialogs" render={ () => <Dialogs dialogs={props.state.ArrayMesseges.ArrayDialogs} 
-            messeges={props.state.ArrayMesseges.ArrayMesseges} 
+        <Route path="/Dialogs" render={ () => <Dialogs dialogs={props.state.dataMessages.arrayDialogs} 
+            messages={props.state.dataMessages.arrayMessages} 
             dispatch = {props.dispatch}
-            Newmessege={props.state.ArrayMesseges.messege}/>} />
+            Newmessage={props.state.dataMessages.message}/>} />
     </div>
       
     </body>
