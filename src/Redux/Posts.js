@@ -13,7 +13,7 @@
     }
 
     const postReducer = (state = initialReducer, action) => {
-       
+      
         switch (action.type) {
             case ADD_POST:
                     let add = {
@@ -22,16 +22,17 @@
                         message: state.text
                     }
                     let copyState = {...state};
-                    copyState.arrayPosts = [...state.arrayPosts];
-                    copyState.arrayPosts.push(add);
                    
-                    copyState.text="";
-                    return copyState;
-            case UPDATE_NEW_POST_TEXT:{
-                    let copyState = {...state}
-                    copyState.text = action.newText;
-                    return copyState;
-            }
+                    return {copyState,
+                    arrayPosts : [...state.arrayPosts,(add)],
+                    text: ""};
+            case UPDATE_NEW_POST_TEXT:
+                     
+                    return {
+                        ...state,
+                       text:action.newText
+                    }
+            
             default: return state;
         }
      
