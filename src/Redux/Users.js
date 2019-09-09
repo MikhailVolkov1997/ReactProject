@@ -2,15 +2,16 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 let ava = "https://static.rfstat.com/renderforest/images/v2/landing-pics/logo_landing/ma5.png";
-let initialReducer = {arrayUsers:[
-    {id:1, followed:true, avatar: ava, firstName:"Mikhail", secondName:"Volkov", status:"love js", country:"Ukraine", city:"Kharkiv"},
+let initialReducer = {arrayUsers:[ ] }
+  /*  {id:1, followed:true, avatar: ava, firstName:"Mikhail", secondName:"Volkov", status:"love js", country:"Ukraine", city:"Kharkiv"},
     {id:2, followed:false, avatar: ava,  firstName:"Mikhail", secondName:"Volkov", status:"love js", country:"Great Britain", city:"London"},
     {id:3, followed:true, avatar: ava,  firstName:"Mikhail", secondName:"Volkov", status:"love js", country:"Russia", city:"Moscow"},
     {id:4, followed:true, avatar: ava,  firstName:"Mikhail", secondName:"Volkov", status:"love js", country:"Ukraine", city:"Kiev"}
     ]
-};
+};*/
 
 const userReducer = (state = initialReducer, action) => {
+   
       switch (action.type) {
           case FOLLOW: 
             return { ...state,
