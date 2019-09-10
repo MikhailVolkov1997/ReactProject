@@ -24,27 +24,25 @@ const messagesReducer = (state = initialReducer, action) => {
        let add = {
         message:state.message
         }
-        let copyState = {...state};
-        copyState.arrayMessages = [...state.arrayMessages];
-
-    copyState.arrayMessages.push(add);
     
-    copyState.message = "";
-        return copyState;
+        return {...state,
+        arrayMessages: [...state.arrayMessages, add],
+        message:" "}
      case UPDATE_NEW_MESSAGE: {
-        let copyState = {...state};
-     copyState.message = action.newText;
-        return copyState;
+    
+        return {
+            ...state,
+            message: action.newText
+        }
      }
      default: return state;
     } 
 }
 export const AddMessegeActionCreate = () => {
-    return (
-        {
+       return {
             type:ADD_MESSAGE
         }
-    ) 
+    
 }
 export const updateNewMessegeActionCreate = (text) => {
     return (

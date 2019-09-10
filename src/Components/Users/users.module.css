@@ -2,3 +2,6 @@ img {
     width: 90px;
     border-radius: 30px
 }
+.active {
+    font-weight: bold;
+}

@@ -3,44 +3,43 @@
        import Message from "./Message/Message"
        import Dialog from "./Dialog/Dialog"
        
-      
-      
-      
-      
-      const Dialogs = (props) => {
-             debugger
-              const Img = <img src = "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" />
-
-              const DialogDate = props.dialogs.map(dialog => <Dialog name={dialog.name} id={dialog.id} />)
-              const MessageDate = props.messages.map(message => <Message avatar ={Img} message={message.message} />)
-              
-              let ElemntTextarea = React.createRef();  
-              
-              let addMessage = () => {
-                     props.addMessage();
+    
+       class Dialogs extends React.Component {
+              constructor(props){
+                     super(props);
+                     this.Img =  <img src = "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" />;
+                     this.ElemntTextarea = React.createRef(); 
               }
-             let onChangeDialogs = () => {
-              let text = ElemntTextarea.current.value;
-                     props.updateNewMessage(text);
-             }
-              
-       return (
-              <div className={classes.dialogItem}>
-                     <div className={classes.dialogs}>
-                           {DialogDate}
-                     </div>
-                     <div className={classes.messanges} >
-                            {MessageDate}
-                            <div className={classes.addedMessege}>
-                            <textarea ref = {ElemntTextarea} value={props.newMessage} onChange={onChangeDialogs}></textarea>
-                            <div>
-                            <button onClick={addMessage}>send message</button>
+
+              addMessage = () => {
+                     this.props.addMessage();
+              }
+              onChangeDialogs = () => {
+                     let text = this.ElemntTextarea.current.value;
+                            this.props.updateNewMessage(text);
+                    }
+
+              render() {
+
+
+                     return (
+                            <div className={classes.dialogItem}>
+                                   <div className={classes.dialogs}>
+                                         {this.props.dialogs.map(dialog => <Dialog name={dialog.name} id={dialog.id} />)}
+                                   </div>
+                                   <div className={classes.messanges} >
+                                          { this.props.messages.map(message => <Message avatar ={this.Img} message={message.message} />)}
+                                          <div className={classes.addedMessege}>
+                                          <textarea ref = {this.ElemntTextarea} value={this.props.newMessage} onChange={this.onChangeDialogs}></textarea>
+                                          <div>
+                                          <button onClick={this.addMessage}>send message</button>
+                                          </div>
+                                   </div> 
+                                   </div>
+                                     
                             </div>
-                     </div> 
-                     </div>
-                       
-              </div>
-       )
+                     )
+              }
        }
 
        export default Dialogs
