@@ -1,14 +1,27 @@
 import React from 'react';
 import Content from "./Content"
-import {AddPostActionCreate, UpdateNewPostTextActionCreate, } from "../../Redux/Posts"
+import {AddPostActionCreate, UpdateNewPostTextActionCreate, setUsersProfileAC } from "../../Redux/Posts"
 import { connect } from 'react-redux';
 
+
+class ContentContainer extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        
+        return  <Content {...this.props}  />
+       
+    }
+}
 
 let mapStateToProps = (state) => {
     return {
         
             post:state.dataPosts.arrayPosts,
-            newPostText:state.dataPosts.text
+            newPostText:state.dataPosts.text,
+            profile:state.dataPosts.profile
             }    
 }
 
@@ -20,10 +33,12 @@ return {
             },
             updateNewPost: (text) => {
                 dispatch(UpdateNewPostTextActionCreate(text));
+            },
+            setUserProfile:(profile) =>{
+                dispatch(setUsersProfileAC(profile))
             }
         }
 }
 
-let ContentComponent =  connect (mapStateToProps, mapDispatchToProps)(Content);
+export default connect (mapStateToProps, mapDispatchToProps)(ContentContainer);
 
-export default ContentComponent;

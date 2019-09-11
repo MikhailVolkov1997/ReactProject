@@ -4,6 +4,8 @@ import {followAC, unfollowAC, setUsersAC, currentPageAC, setTotalUsersCountAC, t
 import Users from "./Users";
 import  * as Axios from 'axios';
 import preloader from './../Ellips.svg'
+import classes from './users.module.css'
+
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -35,7 +37,7 @@ class UsersContainer extends React.Component {
 
         
            return <> 
-                {this.props.isFetching ? <img src={preloader} /> : null}
+                {this.props.isFetching ? <img className={classes.preloader} src={preloader} /> : null}
            <Users  componentDidMount = {this.componentDidMount}
                 onChanged={this.onChanged}
                 users={this.props.users}

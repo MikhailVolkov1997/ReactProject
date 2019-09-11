@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './users.module.css'
+import {NavLink} from "react-router-dom"
 
 
 
@@ -33,7 +34,9 @@ class Users extends React.Component {
                 
                 
                      <span>
+                         <NavLink to = {`/profile/${user.id}`}>
                          <img src={user.photos.small != null ? user.photos.small : this.ava }></img>
+                         </NavLink>
                          <div>
                               {user.name}
                          </div>
