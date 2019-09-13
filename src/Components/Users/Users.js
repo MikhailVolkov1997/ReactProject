@@ -1,6 +1,10 @@
 import React from 'react';
 import classes from './users.module.css'
-import  * as Axios from 'axios';
+import {NavLink} from "react-router-dom"
+import * as Axios from "axios"
+
+
+
 
 class Users extends React.Component {
     constructor(props) {
@@ -8,23 +12,32 @@ class Users extends React.Component {
         this.ava = "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg"
     }
 
-   
-    
-    componentDidMount() {
-        
-            Axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                this.props.setUser(response.data.items);
-            }) 
-
-    }
     render() {
+        let pageCount = Math.ceil(this.props.totalCount / this.props.pageSize);
+        
+
+        let pageArray = [];
+        for  (let i = 1; i <= 10; i++) {
+            pageArray.push(i);
+        }
+
+       
         return <div>
+
+            <div>{pageArray.map(page => {
+              return  <span className={this.props.currentPage ===  page && classes.active}
+              onClick={(e) => {
+                  this.props.onChanged(page) 
+                }}>{page} </span>
+            })}</div>
            
             { this.props.users.map(user => <div key={user.id}>
                 
                 
                      <span>
+                         <NavLink to = {`/profile/${user.id}`}>
                          <img src={user.photos.small != null ? user.photos.small : this.ava }></img>
+                         </NavLink>
                          <div>
                               {user.name}
                          </div>
@@ -32,8 +45,25 @@ class Users extends React.Component {
                              {"user.secondName"}
                          </div>
                          <div>
-                         {user.followed ? <button onClick={() => {this.props.unfollowUser(user.id)}}>follow</button> 
-                        : <button onClick={() => {this.props.followUser(user.id)}}>unfollow</button>}
+                         {user.followed ? <button onClick={() => {debugger
+                          Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials:true, headers:{"API-KEY":"15119bde-1169-4ede-aea8-da15dbafcd98"}} )
+                          .then(response => {
+                              if (response.data.resultCode === 0) {
+                                  this.props.unfollowUser(user.id)
+                              }
+                           })
+                          }}>unfollow</button> 
+                        : <button onClick={() => {debugger
+                            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {withCredentials:true,
+                            headers:{"API-KEY":"15119bde-1169-4ede-aea8-da15dbafcd98"} })
+                           
+                            .then(response => {
+                               
+                                if (response.data.resultCode === 0) {
+                                    this.props.followUser(user.id)
+                                }
+                            })
+                            }}>follow</button>}
                         </div>
                      </span>
                      <span>
@@ -48,9 +78,10 @@ class Users extends React.Component {
                  </div>
             
                   )
-             }
+            }
         </div>
     }
 }
 
 export default Users;
+

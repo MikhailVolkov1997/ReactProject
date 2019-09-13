@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import Header from "./Components/Header/Header"
 import Sitebar from "./Components/Sitebar/Sitebar"
-import Dialogs from "./Components/Dialogs/Dialogs"
 import {BrowserRouter, Route} from "react-router-dom"
 import ContentComponent from './Components/Content/ContentContainer';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
+import ProfileContainer from './Components/Content/ProfileContainer';
+import HeaderContainer from './Components/Header/HeaderContainer'
+
 
 
 function App(props) {
@@ -14,12 +15,14 @@ function App(props) {
   return (
     <BrowserRouter>
     <body className="grid">
-       <Header />
+       <HeaderContainer  />
        <Sitebar />
     <div className="app-wrapper-content">
-        <Route path="/Content" render={ () => <ContentComponent   />} />
+        <Route path='/profile/:userId' render={ () => <ProfileContainer />} />
+        <Route path="/Content" render={ () => <ContentComponent  />} />
         <Route path="/Dialogs" render={ () => <DialogsContainer   /> }/>
         <Route path="/Users" render={ () => <UsersContainer   /> }/>
+        
     </div>
       
     </body>

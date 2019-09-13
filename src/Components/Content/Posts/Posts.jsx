@@ -6,7 +6,7 @@ const Post = (props) => {
     return (
        <div className={classes.post}>
         
-        <img src=  {props.avatar} />
+        <img src={props.avatar} />
           {props.message} 
          
        </div>

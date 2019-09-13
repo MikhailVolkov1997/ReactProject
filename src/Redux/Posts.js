@@ -1,6 +1,7 @@
     const ADD_POST = 'ADD-POST';
     const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-
+    const SET_USERS_PROFILE ="SET-USERS-PROFILE";
+ 
     let initialReducer = { arrayPosts : [
         { id: 1,avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
         
@@ -10,7 +11,9 @@
 
     ],
     text:"react cool",
+    profile:null
     }
+
 
     const postReducer = (state = initialReducer, action) => {
       
@@ -32,6 +35,11 @@
                         ...state,
                        text:action.newText
                     }
+            case SET_USERS_PROFILE: 
+                    return {
+                        ...state,
+                        profile: action.profile
+                    }
             
             default: return state;
         }
@@ -49,5 +57,11 @@
                 newText:text
             }
         )
+    }
+    export const setUsersProfileAC = (profile) => {
+            return {
+                type:SET_USERS_PROFILE,
+                profile
+            }
     }
     export default postReducer;
