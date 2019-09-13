@@ -13,6 +13,7 @@
     }
 
     const postReducer = (state = initialReducer, action) => {
+      
         switch (action.type) {
             case ADD_POST:
                     let add = {
@@ -20,13 +21,18 @@
                         avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png",
                         message: state.text
                     }
-                    state.arrayPosts.push(add);
+                    let copyState = {...state};
                    
-                    state.text="";
-                    return state;
+                    return {copyState,
+                    arrayPosts : [...state.arrayPosts,(add)],
+                    text: ""};
             case UPDATE_NEW_POST_TEXT:
-                    state.text = action.newText;
-                    return state;
+                     
+                    return {
+                        ...state,
+                       text:action.newText
+                    }
+            
             default: return state;
         }
      

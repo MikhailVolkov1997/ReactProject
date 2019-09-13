@@ -7,6 +7,7 @@ const Sitebar = () => {
         <div className={classes.sitebar}>
         <NavLink to="/Content" activeClassName={classes.active}>Profile</NavLink>
         <NavLink to="/Dialogs" activeClassName={classes.active}>Message</NavLink>
+        <NavLink to="/Users" activeClassName={classes.active}>Users</NavLink> 
         <a>News</a>
         <a>Music</a>
         <a>Video</a>

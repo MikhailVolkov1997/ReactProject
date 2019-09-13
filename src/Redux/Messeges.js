@@ -18,18 +18,24 @@ arrayDialogs : [
 message:"Hi,"}
 
 const messagesReducer = (state = initialReducer, action) => {
+    
    switch (action.type ) {
        case ADD_MESSAGE:  
        let add = {
         message:state.message
         }
-    state.arrayMessages.push(add);
+        let copyState = {...state};
+        copyState.arrayMessages = [...state.arrayMessages];
+
+    copyState.arrayMessages.push(add);
     
-    state.message = "";
-        return state;
-     case UPDATE_NEW_MESSAGE: 
-     state.message = action.newText;
-        return state;
+    copyState.message = "";
+        return copyState;
+     case UPDATE_NEW_MESSAGE: {
+        let copyState = {...state};
+     copyState.message = action.newText;
+        return copyState;
+     }
      default: return state;
     } 
 }
