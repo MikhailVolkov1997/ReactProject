@@ -45,19 +45,20 @@ class Users extends React.Component {
                              {"user.secondName"}
                          </div>
                          <div>
-                         {user.followed ? <button onClick={() => {
-                          Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials:true}
-                       ).
-                          then(response => {
+                         {user.followed ? <button onClick={() => {debugger
+                          Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials:true, headers:{"API-KEY":"15119bde-1169-4ede-aea8-da15dbafcd98"}} )
+                          .then(response => {
                               if (response.data.resultCode === 0) {
-                                  this.props.followUser(user.id)
+                                  this.props.unfollowUser(user.id)
                               }
                            })
                           }}>unfollow</button> 
-                        : <button onClick={() => {
-                            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {withCredentials:true}
-                           )
+                        : <button onClick={() => {debugger
+                            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {withCredentials:true,
+                            headers:{"API-KEY":"15119bde-1169-4ede-aea8-da15dbafcd98"} })
+                           
                             .then(response => {
+                               
                                 if (response.data.resultCode === 0) {
                                     this.props.followUser(user.id)
                                 }
