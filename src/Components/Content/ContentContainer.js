@@ -2,12 +2,20 @@ import React from 'react';
 import Content from "./Content"
 import {AddPostActionCreate, UpdateNewPostTextActionCreate, setUsersProfileAC } from "../../Redux/Posts"
 import { connect } from 'react-redux';
+import * as Axios from "axios"
 
 
 class ContentContainer extends React.Component {
     constructor(props) {
         super(props)
     }
+
+    componentWillMount () {
+        Axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.userId}`).then(response => {
+            this.props.setUserProfile(response.data);
+           
+    })
+}
 
     render() {
         
@@ -21,7 +29,8 @@ let mapStateToProps = (state) => {
         
             post:state.dataPosts.arrayPosts,
             newPostText:state.dataPosts.text,
-            profile:state.dataPosts.profile
+            profile:state.dataPosts.profile,
+            userId:state.auth.userId
             }    
 }
 

@@ -22,9 +22,15 @@ class Content extends React.Component {
    
 
           render () {
-            
+     
               return  <div className={classes.content}>
               <img src="http://s3.amazonaws.com/images.seroundtable.com/google-css-images-1515761601.jpg" />
+                  <div>
+                      <img className={classes.imgAvatar}src={!this.props.profile ? 
+                        "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" 
+                        : this.props.profile.photos.small}></img>  
+                     
+                  </div>
                   <textarea ref={this.newPostElement} onChange={this.onChangePost} value={this.props.newPostText}></textarea>
                   <button onClick={this.addPost}>Add post</button>
                       <div>

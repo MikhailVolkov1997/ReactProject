@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './users.module.css'
 import {NavLink} from "react-router-dom"
+import * as Axios from "axios"
 
 
 
@@ -45,9 +46,23 @@ class Users extends React.Component {
                          </div>
                          <div>
                          {user.followed ? <button onClick={() => {
-                          this.props.unfollowUser(user.id)
-                          }}>follow</button> 
-                        : <button onClick={() => {this.props.followUser(user.id)}}>unfollow</button>}
+                          Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials:true}
+                       ).
+                          then(response => {
+                              if (response.data.resultCode === 0) {
+                                  this.props.followUser(user.id)
+                              }
+                           })
+                          }}>unfollow</button> 
+                        : <button onClick={() => {
+                            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {withCredentials:true}
+                           )
+                            .then(response => {
+                                if (response.data.resultCode === 0) {
+                                    this.props.followUser(user.id)
+                                }
+                            })
+                            }}>follow</button>}
                         </div>
                      </span>
                      <span>
