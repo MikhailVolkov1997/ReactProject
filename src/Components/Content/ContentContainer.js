@@ -3,6 +3,8 @@ import Content from "./Content"
 import {AddPostActionCreate, UpdateNewPostTextActionCreate, setUsersProfileAC } from "../../Redux/Posts"
 import { connect } from 'react-redux';
 import * as Axios from "axios"
+import { getProfile } from '../../api/api';
+
 
 
 class ContentContainer extends React.Component {
@@ -11,8 +13,8 @@ class ContentContainer extends React.Component {
     }
 
     componentWillMount () {
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.userId}`).then(response => {
-            this.props.setUserProfile(response.data);
+        getProfile(this.props.userId).then(data => {
+            this.props.setUserProfile(data);
            
     })
 }

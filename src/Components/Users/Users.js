@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './users.module.css'
 import {NavLink} from "react-router-dom"
-import * as Axios from "axios"
+import { followUser } from '../../api/api';
 
 
 
@@ -45,24 +45,14 @@ class Users extends React.Component {
                              {"user.secondName"}
                          </div>
                          <div>
-                         {user.followed ? <button onClick={() => {debugger
-                          Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials:true, headers:{"API-KEY":"15119bde-1169-4ede-aea8-da15dbafcd98"}} )
-                          .then(response => {
-                              if (response.data.resultCode === 0) {
-                                  this.props.unfollowUser(user.id)
-                              }
-                           })
-                          }}>unfollow</button> 
-                        : <button onClick={() => {debugger
-                            Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {withCredentials:true,
-                            headers:{"API-KEY":"15119bde-1169-4ede-aea8-da15dbafcd98"} })
-                           
-                            .then(response => {
-                               
-                                if (response.data.resultCode === 0) {
-                                    this.props.followUser(user.id)
-                                }
-                            })
+                         {user.followed ? <button disabled ={this.props.togleIsFollowingProgress.some(id => id === user.id)}
+                            onClick={() => {
+                                this.props.unfollowUserThunkCreator(user.id);
+                            }}>unfollow</button> 
+                        : <button disabled ={this.props.togleIsFollowingProgress.some(id => id === user.id)}
+                         onClick={() => {
+                            this.props.followUserThunkCreator(user.id);
+                            
                             }}>follow</button>}
                         </div>
                      </span>

@@ -22,11 +22,11 @@ class Content extends React.Component {
    
 
           render () {
-     
+     debugger
               return  <div className={classes.content}>
               <img src="http://s3.amazonaws.com/images.seroundtable.com/google-css-images-1515761601.jpg" />
                   <div>
-                      <img className={classes.imgAvatar}src={!this.props.profile ? 
+                      <img className={classes.imgAvatar}src={!this.props.profile || !this.props.profile.photos.small  ? 
                         "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" 
                         : this.props.profile.photos.small}></img>  
                      
