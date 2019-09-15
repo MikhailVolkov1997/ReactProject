@@ -1,8 +1,7 @@
 import React from 'react';
 import Content from "./Content"
-import {AddPostActionCreate, UpdateNewPostTextActionCreate, setUsersProfileAC } from "../../Redux/Posts"
+import {AddPostActionCreate, UpdateNewPostTextActionCreate, setUsersProfileAC, setUserProfileThunkCreate_2 } from "../../Redux/Posts"
 import { connect } from 'react-redux';
-import * as Axios from "axios"
 import { getProfile } from '../../api/api';
 
 
@@ -13,11 +12,8 @@ class ContentContainer extends React.Component {
     }
 
     componentWillMount () {
-        getProfile(this.props.userId).then(data => {
-            this.props.setUserProfile(data);
-           
-    })
-}
+       setUserProfileThunkCreate_2(this.props.userId);
+    }
 
     render() {
         
@@ -26,30 +22,30 @@ class ContentContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
-    return {
+    let mapStateToProps = (state) => {
+        return {
+            
+                post:state.dataPosts.arrayPosts,
+                newPostText:state.dataPosts.text,
+                profile:state.dataPosts.profile,
+                userId:state.auth.userId
+                }    
+    }
+
+    let mapDispatchToProps = (dispatch) => {
         
-            post:state.dataPosts.arrayPosts,
-            newPostText:state.dataPosts.text,
-            profile:state.dataPosts.profile,
-            userId:state.auth.userId
-            }    
-}
-
-let mapDispatchToProps = (dispatch) => {
-    
-return {
-            addPost: () => {
-                dispatch(AddPostActionCreate());
-            },
-            updateNewPost: (text) => {
-                dispatch(UpdateNewPostTextActionCreate(text));
-            },
-            setUserProfile:(profile) =>{
-                dispatch(setUsersProfileAC(profile))
+    return {
+                addPost: () => {
+                    dispatch(AddPostActionCreate());
+                },
+                updateNewPost: (text) => {
+                    dispatch(UpdateNewPostTextActionCreate(text));
+                }, 
+                setUserProfileThunkCreate_2:(userId) => {
+                    dispatch(setUserProfileThunkCreate_2(userId));
+                }
             }
-        }
-}
+    }
 
-export default connect (mapStateToProps, mapDispatchToProps)(ContentContainer);
+    export default connect (mapStateToProps, mapDispatchToProps)(ContentContainer);
 

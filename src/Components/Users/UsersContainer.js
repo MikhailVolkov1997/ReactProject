@@ -14,7 +14,7 @@ import {followAC,
 import Users from "./Users";
 import preloader from './../Ellips.svg'
 import classes from './users.module.css'
-import { getUsers } from "../../api/api";
+
 
 
 class UsersContainer extends React.Component {
