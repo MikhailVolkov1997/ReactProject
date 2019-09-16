@@ -2,7 +2,9 @@ import React from 'react';
 import Content from "./Content"
 import {AddPostActionCreate, UpdateNewPostTextActionCreate, setUsersProfileAC, setUserProfileThunkCreate_2 } from "../../Redux/Posts"
 import { connect } from 'react-redux';
-import { getProfile } from '../../api/api';
+import {withAuthRedirect} from '../Hoc/withAuthRedirect';
+import { compose } from '../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux';
+import StatusComponent from './StatusComponent';
 
 
 
@@ -16,11 +18,15 @@ class ContentContainer extends React.Component {
     }
 
     render() {
-        
-        return  <Content {...this.props}  />
        
+        return  <>
+        <StatusComponent />
+        <Content {...this.props}  />
+                
+                </>
+       
+        }
     }
-}
 
     let mapStateToProps = (state) => {
         return {
@@ -28,7 +34,8 @@ class ContentContainer extends React.Component {
                 post:state.dataPosts.arrayPosts,
                 newPostText:state.dataPosts.text,
                 profile:state.dataPosts.profile,
-                userId:state.auth.userId
+                userId:state.auth.userId,
+                isAuth:state.auth.isAuth
                 }    
     }
 
@@ -47,5 +54,8 @@ class ContentContainer extends React.Component {
             }
     }
 
-    export default connect (mapStateToProps, mapDispatchToProps)(ContentContainer);
+    export default compose(connect (mapStateToProps, mapDispatchToProps),
+        withAuthRedirect)(ContentContainer)
+    
+    
 

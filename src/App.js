@@ -23,7 +23,7 @@ function App(props) {
         <Route path="/Content" render={ () => <ContentComponent  />} />
         <Route path="/Dialogs" render={ () => <DialogsContainer   /> }/>
         <Route path="/Users" render={ () => <UsersContainer   /> }/>
-        <Route parh='/Login' render={ () => <Login /> } />
+        <Route path='/Login' render={ () => <Login /> } />
         
     </div>
       

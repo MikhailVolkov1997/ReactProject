@@ -1,17 +1,12 @@
 import React from "react"
-import * as Axios from "axios"
 import Profile from "../Users/Profile";
 import { connect } from 'react-redux';
-import {setUsersProfileAC } from "../../Redux/Posts"
 import {withRouter} from 'react-router-dom';
 import {setUserProfileThunkCreate} from './../../Redux/Posts'
-
-
-
-
+import { withAuthRedirect } from "../Hoc/withAuthRedirect";
+import { compose } from "../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
 
 class ProfileContainer extends React.Component {
-
 
     componentDidMount(){
         let userId = this.props.match.params.userId
@@ -23,9 +18,12 @@ class ProfileContainer extends React.Component {
         }
     }
 
+   
+
     let mapStateToProps = (state) => {
         return {
-                profile:state.dataPosts.profile
+                profile:state.dataPosts.profile,
+                isAuth:state.auth.isAuth
                 }    
     }
 
@@ -38,6 +36,9 @@ class ProfileContainer extends React.Component {
             }
     }
 
-    let WithUrlProfileContainer = withRouter(ProfileContainer)
+    export default compose(connect (mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withAuthRedirect
+    )(ProfileContainer)
 
-    export default connect (mapStateToProps, mapDispatchToProps)(WithUrlProfileContainer);
+    

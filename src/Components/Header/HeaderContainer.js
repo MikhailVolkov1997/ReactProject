@@ -4,6 +4,8 @@ import  * as Axios from "axios"
 import { connect } from "react-redux"
 import {getAuthThunkCreator} from './../../Redux/auth'
 import { getAuth } from "../../api/api.js"
+import {compose} from "redux"
+
 
 class HeaderContainer extends React.Component {
 
@@ -32,4 +34,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(HeaderContainer)
+export default compose (connect(mapStateToProps, mapDispatchToProps)) (HeaderContainer)
