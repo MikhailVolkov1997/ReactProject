@@ -6,7 +6,8 @@ import ContentComponent from './Components/Content/ContentContainer';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Content/ProfileContainer';
-import HeaderContainer from './Components/Header/HeaderContainer'
+import HeaderContainer from './Components/Header/HeaderContainer';
+import Login from './Components/Login/Login'
 
 
 
@@ -22,6 +23,7 @@ function App(props) {
         <Route path="/Content" render={ () => <ContentComponent  />} />
         <Route path="/Dialogs" render={ () => <DialogsContainer   /> }/>
         <Route path="/Users" render={ () => <UsersContainer   /> }/>
+        <Route parh='/Login' render={ () => <Login /> } />
         
     </div>
       
