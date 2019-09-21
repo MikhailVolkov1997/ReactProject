@@ -1,9 +1,9 @@
-import { getProfile } from "../api/api";
+import { getProfile, updateStatus, getStatus } from "../api/api";
 
     const ADD_POST = 'ADD-POST';
     const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
     const SET_USERS_PROFILE ="SET-USERS-PROFILE";
- 
+    const SET_STATUS = 'SET-STATUS'
     let initialReducer = { arrayPosts : [
         { id: 1,avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
         
@@ -13,7 +13,8 @@ import { getProfile } from "../api/api";
 
     ],
     text:"react cool",
-    profile:null
+    profile:null,
+    status:""
     }
 
 
@@ -42,6 +43,11 @@ import { getProfile } from "../api/api";
                         ...state,
                         profile: action.profile
                     }
+            case SET_STATUS:
+                return {
+                    ...state,
+                    status: action.status
+                }
             
             default: return state;
         }
@@ -67,6 +73,16 @@ import { getProfile } from "../api/api";
             }
     }
 
+    export const setStatusAC = (status) => {
+        
+        return {
+            type:SET_STATUS,
+            status
+        }
+    }
+
+   
+
 export const setUserProfileThunkCreate = (userId) => {
     return (dispatch) => {
         getProfile(userId).then(data => {
@@ -81,4 +97,22 @@ export const setUserProfileThunkCreate_2 = (userId) => {
     })
     }
 }
+export const updateStatusThunkCreate = (status) => {
+    debugger
+    return (dispatch) => {
+        updateStatus(status).then(response => {
+            
+                dispatch(setStatusAC(status))
+            
+        })
+    }
+}
+export const getStatusThunkCreate = (userId) => {
+    return (dispatch) => {
+        getStatus(userId).then(data => {
+            dispatch(setStatusAC(data.statusText));
+
+        })
+    }
+} 
     export default postReducer;

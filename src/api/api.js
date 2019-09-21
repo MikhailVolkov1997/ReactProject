@@ -30,3 +30,12 @@ export const followUser=(userId) => {
     return instance.post(`follow/${userId}`)
     .then(response => response.data)
 }
+export const getStatus = (userId) => {
+    return instance.get(`profile/status/${userId}`)
+    .then(response => response)
+    
+}
+export const updateStatus = (status) => {
+    return instance.put(`profile/status`, {status:status} )
+    .then(response => response.data)
+} 
