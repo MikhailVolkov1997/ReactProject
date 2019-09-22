@@ -98,7 +98,6 @@ export const setUserProfileThunkCreate_2 = (userId) => {
     }
 }
 export const updateStatusThunkCreate = (status) => {
-    debugger
     return (dispatch) => {
         updateStatus(status).then(response => {
             
@@ -108,9 +107,10 @@ export const updateStatusThunkCreate = (status) => {
     }
 }
 export const getStatusThunkCreate = (userId) => {
+    
     return (dispatch) => {
         getStatus(userId).then(data => {
-            dispatch(setStatusAC(data.statusText));
+            dispatch(setStatusAC(data.data));
 
         })
     }

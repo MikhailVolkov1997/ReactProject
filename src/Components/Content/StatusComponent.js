@@ -9,7 +9,7 @@ class StatusComponent extends React.Component {
         }
         this.defaultStatus = "please enter status"
         this.activateEdit = this.activateEdit.bind(this);
-        this.console = console.log(props)
+        
         this.updateStatusValue = React.createRef();
     }
         
@@ -28,6 +28,16 @@ class StatusComponent extends React.Component {
            status:value
        })
        
+    }
+
+    componentDidUpdate (beforeProps, afterProps) {
+        if(beforeProps.status !== this.props.status) {
+            this.setState({
+                status:this.props.status
+            })
+        }
+       
+        
     }
     
 
