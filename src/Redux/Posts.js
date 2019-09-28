@@ -12,7 +12,6 @@ import { getProfile, updateStatus, getStatus } from "../api/api";
         {id:3, avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"}
 
     ],
-    text:"react cool",
     profile:null,
     status:""
     }
@@ -25,7 +24,7 @@ import { getProfile, updateStatus, getStatus } from "../api/api";
                     let add = {
                         id:4,
                         avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png",
-                        message: state.text
+                        message: action.newPost
                     }
                     let copyState = {...state};
                    
@@ -53,18 +52,11 @@ import { getProfile, updateStatus, getStatus } from "../api/api";
         }
      
     }
-    export const AddPostActionCreate = () => {
+    export const AddPostActionCreate = (newPost) => {
         return ( {
-            type:ADD_POST
+            type:ADD_POST,
+            newPost
         } )
-    }
-    export const UpdateNewPostTextActionCreate = (text) => {
-        return (
-            {
-                type:UPDATE_NEW_POST_TEXT,
-                newText:text
-            }
-        )
     }
     export const setUsersProfileAC = (profile) => {
             return {

@@ -1,5 +1,7 @@
 import React from "react";
 import {reduxForm, Field} from 'redux-form'
+import { Input } from "../Component/Textarea";
+import { required, maxLengthActionCreator } from '../../Utills/Validators/Validate';
 
 
 
@@ -12,6 +14,7 @@ const Login = () => {
    
 }
 
+let maxLength20 = maxLengthActionCreator(20);
 
  const LoginForm = (props) => {
 
@@ -19,10 +22,10 @@ const Login = () => {
    
         return <form onSubmit={props.handleSubmit}>
              <div>
-                <Field  placeholder='UserName' name={'name'} component={'input'} />
+                <Field  placeholder='UserName' name={'name'} component={Input}  validate = {[required, maxLength20]}/>
              </div>
              <div>
-                 <Field  placeholder="Password" name={'password'} component={'input'} />
+                 <Field  placeholder="Password" name={'password'} component={Input}  validate = {[required, maxLength20]}/>
              </div>
              <div>
                  <Field type="checkbox" name={'rememberMe'} component={'input'} /> Remember me

@@ -1,7 +1,6 @@
 import React from 'react';
 import Content from "./Content"
-import {AddPostActionCreate, 
-    UpdateNewPostTextActionCreate, 
+import {AddPostActionCreate,  
      setUserProfileThunkCreate_2, 
      getStatusThunkCreate,
       updateStatusThunkCreate } from "../../Redux/Posts"
@@ -50,11 +49,8 @@ class ContentContainer extends React.Component {
     let mapDispatchToProps = (dispatch) => {
         
     return {
-                addPost: () => {
-                    dispatch(AddPostActionCreate());
-                },
-                updateNewPost: (text) => {
-                    dispatch(UpdateNewPostTextActionCreate(text));
+                addPost: (newPost) => {
+                    dispatch(AddPostActionCreate(newPost));
                 }, 
                 setUserProfileThunkCreate_2:(userId) => {
                     dispatch(setUserProfileThunkCreate_2(userId));

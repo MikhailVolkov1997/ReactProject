@@ -15,41 +15,36 @@ arrayDialogs : [
     {name:"Vadim",id:6}
 
 ],
-message:"Hi,"}
+}
 
 const messagesReducer = (state = initialReducer, action) => {
     
    switch (action.type ) {
        case ADD_MESSAGE:  
        let add = {
-        message:state.message
+        message:action.addMessageOnDialogs
         }
     
         return {...state,
-        arrayMessages: [...state.arrayMessages, add],
-        message:" "}
-     case UPDATE_NEW_MESSAGE: {
-    
-        return {
-            ...state,
-            message: action.newText
+        arrayMessages: [...state.arrayMessages, add]
         }
-     }
+     
      default: return state;
     } 
 }
-export const AddMessegeActionCreate = () => {
+export const AddMessegeActionCreate = (addMessageOnDialogs) => {
        return {
-            type:ADD_MESSAGE
+            type:ADD_MESSAGE,
+            addMessageOnDialogs
         }
     
 }
-export const updateNewMessegeActionCreate = (text) => {
-    return (
-        {
-            type:UPDATE_NEW_MESSAGE,
-            newText:text
-        }
-    ) 
-}
+// export const updateNewMessegeActionCreate = (text) => {  //update action creator
+//     return (
+//         {
+//             type:UPDATE_NEW_MESSAGE,
+//             newText:text
+//         }
+//     ) 
+// }
 export default messagesReducer;
