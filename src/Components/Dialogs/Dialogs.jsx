@@ -6,6 +6,7 @@
        import {Field, reduxForm} from 'redux-form';
        import { required, maxLengthActionCreator } from '../../Utills/Validators/Validate';
        import { Textarea } from '../Component/Textarea';
+import { withAuthRedirect } from '../Hoc/withAuthRedirect';
        
     
        class Dialogs extends React.Component {
@@ -25,7 +26,8 @@
               } 
               
               render() {
-                     if (this.props.isAuth === false ) return <Redirect to="/login" />
+                     if (!this.props.isAuth  ) return <Redirect to="/login" />
+
 
                      return (
                             <div className={classes.dialogItem}>

@@ -7,12 +7,24 @@ import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Content/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import Login from './Components/Login/Login'
+import Login from './Components/Login/Login';
+import { connect } from "react-redux";
+import {getAuthThunkCreator} from './Redux/auth'
+import Preloader from './Components/Proloader/Preloader';
+import {initializeThunkCreator} from "./Redux/app-reducer"
 
 
+class App extends React.Component{
 
-function App(props) {
-  
+  componentDidMount () {
+           this.props.getAuthThunkCreator();       
+           this.props.initializeThunkCreator();
+  }
+
+  render () {
+     if(!this.props.initialazed) {
+          return <Preloader />
+    }
   return (
     <BrowserRouter>
     <body className="grid">
@@ -29,7 +41,14 @@ function App(props) {
       
     </body>
     </BrowserRouter>
+  
   )
+  }
+}
+const mapStateToProps = (state) => {
+  return {
+    initialazed:state.app.initialazed
+  }
 }
 
-export default App;
+export default connect(mapStateToProps, { getAuthThunkCreator, initializeThunkCreator}) (App)
