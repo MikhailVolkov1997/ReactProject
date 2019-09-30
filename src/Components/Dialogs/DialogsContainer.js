@@ -2,7 +2,7 @@ import React from 'react';
 import Dialogs from './Dialogs';
 import {AddMessegeActionCreate} from './../../Redux/Messeges'
 import { connect } from 'react-redux';
-import { compose } from '../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux';
+import { compose } from 'redux';
 
 
 let mapStateToProps = (state) => {

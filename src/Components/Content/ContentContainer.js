@@ -6,7 +6,7 @@ import {AddPostActionCreate,
       updateStatusThunkCreate } from "../../Redux/Posts"
 import { connect } from 'react-redux';
 import {withAuthRedirect} from '../Hoc/withAuthRedirect';
-import { compose } from '../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux';
+import { compose } from 'redux';
 import StatusComponent from './StatusComponent';
 
 

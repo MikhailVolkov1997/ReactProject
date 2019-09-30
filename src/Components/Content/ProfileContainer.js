@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {setUserProfileThunkCreate, getStatusThunkCreate} from './../../Redux/Posts'
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
-import { compose } from "../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
     

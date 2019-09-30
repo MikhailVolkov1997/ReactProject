@@ -14,7 +14,7 @@ import {followAC,
 import Users from "./Users";
 import preloader from './../Ellips.svg'
 import classes from './users.module.css'
-import { compose } from "../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+import { compose } from "redux";
 
 
 
