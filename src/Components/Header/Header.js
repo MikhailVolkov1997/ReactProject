@@ -9,7 +9,7 @@ const Header = (props) => {
     <img src="https://www.google.com.ua/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"/>
     <div className={classes.login}>
       
-      <NavLink to = '/Login'>{props.isAuth ? "free" : "Login"  }</NavLink>
+      <NavLink to = '/Login'>{props.isAuth ? <button onClick={props.logout}>Log out</button> : "Login"  }</NavLink>
     </div>
 
   </div>

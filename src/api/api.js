@@ -39,3 +39,11 @@ export const updateStatus = (status) => {
     return instance.put(`profile/status`, {status:status} )
     .then(response => response.data)
 } 
+export const Login = (email, password, rememberMe = false) => {
+    return instance.post(`auth/login`, {email, password, rememberMe})
+    
+}
+export const Logout = () => {
+    return instance.delete(`auth/login`)
+    
+}
