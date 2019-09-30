@@ -15,7 +15,7 @@ import Users from "./Users";
 import preloader from './../Ellips.svg'
 import classes from './users.module.css'
 import { compose } from "redux";
-import { getUsers, getSize } from "../../Redux/users-selectors";
+import { getUsers, getSize, getTotalCount, getcurrentPage, getFetching } from "../../Redux/users-selectors";
 
 
 
@@ -48,11 +48,11 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users:getUsers(state),
-        totalCount:state.dataUsers.totalCount,
+        totalCount:getTotalCount(state),
         pageSize:getSize(state),
-        currentPage:state.dataUsers.currentPage,
-        isFetching: state.dataUsers.isFetching,
-        togleIsFollowingProgress:state.dataUsers.togleIsFollowingProgress
+        currentPage:getcurrentPage(state),
+        isFetching: getFetching(state),
+        togleIsFollowingProgress:getTogleIsFollowingProgress(state)
     }
 }
 
