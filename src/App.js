@@ -17,14 +17,15 @@ import {initializeThunkCreator} from "./Redux/app-reducer"
 class App extends React.Component{
 
   componentDidMount () {
-           this.props.getAuthThunkCreator();       
+           this.props.getAuthThunkCreator();     
            this.props.initializeThunkCreator();
   }
 
   render () {
      if(!this.props.initialazed) {
+       debugger
           return <Preloader />
-    }
+    } else {
   return (
     <BrowserRouter>
     <body className="grid">
@@ -44,6 +45,7 @@ class App extends React.Component{
   
   )
   }
+}
 }
 const mapStateToProps = (state) => {
   return {

@@ -1,4 +1,4 @@
-
+// import {createSelector}  from "./reselector";
 
 export const getUsers = (state) => {
     return state.dataUsers.arrayUsers;
@@ -23,3 +23,13 @@ export const getFetching = (state) => {
 export const getTogleIsFollowingProgress = (state) => {
     return state.dataUsers.togleIsFollowingProgress;
 }
+
+
+////////////////////////////////////reselect fake \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+// const getUsers = (state) => {
+//     return state.dataUsers.arrayUsers;
+// }
+// export const superSelector = createSelector(getUsers, (users) => {
+//     return users.filter(u => true);
+// })
+////////////////////////////////////reselect fake \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -11,7 +11,7 @@ let InitialReducer = {
 }
 
 let AuthReducer = (state = InitialReducer, action) => {
-   
+  
         switch(action.type) {
             case SET_USER_DATA:
                 return {
@@ -23,15 +23,16 @@ let AuthReducer = (state = InitialReducer, action) => {
         }
 }
 
-export const setUserDataAC = (userId, email, login, isAuth) =>{
+export const setUserDataAC = (userId, email, login, isAuth) => {
 
     return {type:SET_USER_DATA,  data:{userId, email, login, isAuth}}
 
 }
 
 export const getAuthThunkCreator = () => {
+    
     return (dispatch) => {
-        getAuth().then(data => {
+      return  getAuth().then(data => {  // returned promise
             if (data.resultCode === 0) {
                 let {id, email, login} = data.data;
                 dispatch(setUserDataAC(id, email, login, true));

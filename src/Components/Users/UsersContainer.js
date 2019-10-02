@@ -15,7 +15,7 @@ import Users from "./Users";
 import preloader from './../Ellips.svg'
 import classes from './users.module.css'
 import { compose } from "redux";
-import { getUsers, getSize, getTotalCount, getcurrentPage, getFetching } from "../../Redux/users-selectors";
+import { getUsers, getSize, getTotalCount, getcurrentPage, getFetching, getTogleIsFollowingProgress } from "../../Redux/users-selectors";
 
 
 

@@ -1,4 +1,4 @@
-import { setUserDataAC } from "./auth";
+import { getAuthThunkCreator } from "./auth";
 
 let INITIALIZED_SUCCES = 'INITIALIZED-SUCCES'
 
@@ -26,7 +26,7 @@ export const initializedSucces = () => {
 export const initializeThunkCreator = () => {
     
     return (dispatch) => {
-       let promise =  dispatch(setUserDataAC());
+       let promise =  dispatch(getAuthThunkCreator());
        Promise.all([promise])
        .then(() => {
            dispatch(initializedSucces());

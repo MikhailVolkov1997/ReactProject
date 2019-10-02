@@ -7,7 +7,7 @@ import {AddPostActionCreate,
 import { connect } from 'react-redux';
 import {withAuthRedirect} from '../Hoc/withAuthRedirect';
 import { compose } from 'redux';
-import StatusComponent from './StatusComponent';
+import StatusComponentWithHooks from './StatusComponentWithHooks';
 
 
 
@@ -17,7 +17,7 @@ class ContentContainer extends React.Component {
     }
 
     componentWillMount () {
-       setUserProfileThunkCreate_2(this.props.userId);
+       this.props.setUserProfileThunkCreate_2(this.props.userId);
        this.props.getStatusThunkCreate(this.props.userId);
        
 
@@ -26,7 +26,8 @@ class ContentContainer extends React.Component {
     render() {
        
         return  <>
-        <StatusComponent {...this.props}/>
+        <StatusComponentWithHooks {...this.props} /> 
+        {/* <StatusComponent {...this.props}/> */}
         <Content {...this.props}  />
                 
                 </>
