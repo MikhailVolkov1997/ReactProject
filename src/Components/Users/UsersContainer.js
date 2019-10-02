@@ -14,7 +14,8 @@ import {followAC,
 import Users from "./Users";
 import preloader from './../Ellips.svg'
 import classes from './users.module.css'
-import { compose } from "../../../../AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+import { compose } from "redux";
+import { getUsers, getSize, getTotalCount, getcurrentPage, getFetching } from "../../Redux/users-selectors";
 
 
 
@@ -46,12 +47,12 @@ class UsersContainer extends React.Component {
  
 let mapStateToProps = (state) => {
     return {
-        users:state.dataUsers.arrayUsers,
-        totalCount:state.dataUsers.totalCount,
-        pageSize:state.dataUsers.pageSize,
-        currentPage:state.dataUsers.currentPage,
-        isFetching: state.dataUsers.isFetching,
-        togleIsFollowingProgress:state.dataUsers.togleIsFollowingProgress
+        users:getUsers(state),
+        totalCount:getTotalCount(state),
+        pageSize:getSize(state),
+        currentPage:getcurrentPage(state),
+        isFetching: getFetching(state),
+        togleIsFollowingProgress:getTogleIsFollowingProgress(state)
     }
 }
 
