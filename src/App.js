@@ -11,7 +11,9 @@ import Login from './Components/Login/Login';
 import { connect } from "react-redux";
 import {getAuthThunkCreator} from './Redux/auth'
 import Preloader from './Components/Proloader/Preloader';
-import {initializeThunkCreator} from "./Redux/app-reducer"
+import {initializeThunkCreator} from "./Redux/app-reducer";
+
+
 
 
 class App extends React.Component{
@@ -19,11 +21,12 @@ class App extends React.Component{
   componentDidMount () {
            this.props.getAuthThunkCreator();     
            this.props.initializeThunkCreator();
+          
   }
 
   render () {
      if(!this.props.initialazed) {
-       debugger
+       
           return <Preloader />
     } else {
   return (
@@ -49,8 +52,10 @@ class App extends React.Component{
 }
 const mapStateToProps = (state) => {
   return {
-    initialazed:state.app.initialazed
+    initialazed:state.app.initialazed,
+    userId:state.auth.userId,
+    
   }
 }
 
-export default connect(mapStateToProps, { getAuthThunkCreator, initializeThunkCreator}) (App)
+export default connect(mapStateToProps, { getAuthThunkCreator, initializeThunkCreator }) (App)

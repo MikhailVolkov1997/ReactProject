@@ -1,110 +1,124 @@
-import { getProfile, updateStatus, getStatus } from "../api/api";
+    import { getProfile, updateStatus, getStatus } from "../api/api";
+    import { async } from "q";
 
-    const ADD_POST = 'ADD-POST';
-    const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-    const SET_USERS_PROFILE ="SET-USERS-PROFILE";
-    const SET_STATUS = 'SET-STATUS'
-    let initialReducer = { arrayPosts : [
-        { id: 1,avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
-        
-        {id:2, avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
-        
-        {id:3, avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"}
-
-    ],
-    profile:null,
-    status:""
-    }
+        const ADD_POST = 'ADD-POST';
+        const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+        const SET_USERS_PROFILE ="SET-USERS-PROFILE";
+        const SET_STATUS = 'SET-STATUS';
+        const DELETE_POST = "DELETE-POST";
 
 
-    const postReducer = (state = initialReducer, action) => {
-      
-        switch (action.type) {
-            case ADD_POST:
-                    let add = {
-                        id:4,
-                        avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png",
-                        message: action.newPost
-                    }
-                    let copyState = {...state};
-                   
-                    return {copyState,
-                    arrayPosts : [...state.arrayPosts,(add)],
-                    text: ""};
-            case UPDATE_NEW_POST_TEXT:
-                     
-                    return {
-                        ...state,
-                       text:action.newText
-                    }
-            case SET_USERS_PROFILE: 
-                    return {
-                        ...state,
-                        profile: action.profile
-                    }
-            case SET_STATUS:
-                return {
-                    ...state,
-                    status: action.status
-                }
+        let initialReducer = { arrayPosts : [
+            { id: 1,avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
             
-            default: return state;
+            {id:2, avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"},
+            
+            {id:3, avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png", message:"hello react"}
+
+        ],
+        profile:null,
+        status:""
         }
-     
-    }
-    export const AddPostActionCreate = (newPost) => {
-        return ( {
-            type:ADD_POST,
-            newPost
-        } )
-    }
-    export const setUsersProfileAC = (profile) => {
-            return {
-                type:SET_USERS_PROFILE,
-                profile
+
+
+        const postReducer = (state = initialReducer, action) => {
+        
+            switch (action.type) {
+                case ADD_POST:
+                        let add = {
+                            id:4,
+                            avatar:"https://www.pinclipart.com/picdir/middle/133-1332476_crowd-of-users-transparent-user-icon-png-clipart.png",
+                            message: action.newPost
+                        }
+                        let copyState = {...state};
+                    
+                        return {copyState,
+                        arrayPosts : [...state.arrayPosts,(add)],
+                        text: ""};
+                case UPDATE_NEW_POST_TEXT:
+                        
+                        return {
+                            ...state,
+                        text:action.newText
+                        }
+                case SET_USERS_PROFILE: 
+                        return {
+                            ...state,
+                            profile: action.profile
+                        }
+                case SET_STATUS:
+                    return {
+                        ...state,
+                        status: action.status
+                    }
+                case DELETE_POST: 
+                    return{
+                        ...state, 
+                        arrayPosts: state.arrayPosts.filter(p => p.id != action.id)
+                    }
+                
+                default: return state;
             }
-    }
-
-    export const setStatusAC = (status) => {
         
-        return {
-            type:SET_STATUS,
-            status
+        }
+        export const AddPostActionCreate = (newPost) => {
+            return ( {
+                type:ADD_POST,
+                newPost
+            } )
+        }
+        export const setUsersProfileAC = (profile) => {
+                return {
+                    type:SET_USERS_PROFILE,
+                    profile
+                }
+        }
+
+        export const setStatusAC = (status) => {
+            
+            return {
+                type:SET_STATUS,
+                status
+            }
+        }
+
+        export const deletePostActionCreate = (id) => {
+            return {
+                type:DELETE_POST,
+                id
+            }
+        }
+
+    export const setUserProfileThunkCreate = (userId) => {
+        return async (dispatch) => {
+        let data = await getProfile(userId);
+            dispatch(setUsersProfileAC(data));
         }
     }
 
-   
+    export const setUserProfileThunkCreate_2 = (userId) => {
+        return async (dispatch) => {
+        let data = await getProfile(userId);
+                dispatch(setUsersProfileAC(data));
+        }
+    }
 
-export const setUserProfileThunkCreate = (userId) => {
-    return (dispatch) => {
-        getProfile(userId).then(data => {
-         dispatch(setUsersProfileAC(data));
-         })
+    export const updateStatusThunkCreate = (status) => {
+        return (dispatch) => {
+        updateStatus(status);
+                    dispatch(setStatusAC(status));
+        }
     }
-}
-export const setUserProfileThunkCreate_2 = (userId) => {
-    return (dispatch) => {
-        getProfile(userId).then(data => {
-            dispatch(setUsersProfileAC(data));
-    })
-    }
-}
-export const updateStatusThunkCreate = (status) => {
-    return (dispatch) => {
-        updateStatus(status).then(response => {
-            
-                dispatch(setStatusAC(status))
-            
-        })
-    }
-}
-export const getStatusThunkCreate = (userId) => {
+
+    export const getStatusThunkCreate = (userId) => {
     
-    return (dispatch) => {
-        getStatus(userId).then(data => {
-            dispatch(setStatusAC(data.data));
-
-        })
+        return (dispatch) => {
+        return getStatus(userId).then(data => {  
+                dispatch(setStatusAC(data.data));
+            })
+        }
     }
-} 
-    export default postReducer;
+
+        export default postReducer;
+
+        

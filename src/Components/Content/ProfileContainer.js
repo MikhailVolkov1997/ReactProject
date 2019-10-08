@@ -6,13 +6,12 @@ import {setUserProfileThunkCreate, getStatusThunkCreate} from './../../Redux/Pos
 import { withAuthRedirect } from "../Hoc/withAuthRedirect";
 import { compose } from "redux";
 
+
 class ProfileContainer extends React.Component {
     
     componentDidMount(){
         let userId = this.props.match.params.userId
-        if(!userId) {
-            userId = this.props.autorizedUserId;
-        }
+        
         this.props.setUserProfileThunkCreate(userId);
         this.props.getStatusThunkCreate(userId);
 

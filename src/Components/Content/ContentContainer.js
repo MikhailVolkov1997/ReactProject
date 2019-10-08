@@ -18,7 +18,7 @@ class ContentContainer extends React.Component {
 
     componentWillMount () {
        this.props.setUserProfileThunkCreate_2(this.props.userId);
-       this.props.getStatusThunkCreate(this.props.userId);
+        this.props.getStatusThunkCreate(this.props.userId);
        
 
     }
