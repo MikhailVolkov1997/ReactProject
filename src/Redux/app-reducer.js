@@ -31,7 +31,9 @@
         Promise.all([promise])
         .then(() => {
             dispatch(initializedSucces());
-        });
+        }).catch(function(err) {
+            alert(err)
+        })
 
         }
     }

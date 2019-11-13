@@ -3,7 +3,9 @@ import Content from "./Content"
 import {AddPostActionCreate,  
      setUserProfileThunkCreate_2, 
      getStatusThunkCreate,
-      updateStatusThunkCreate } from "../../Redux/Posts"
+      updateStatusThunkCreate, 
+      UploadPhoto} from "../../Redux/Posts"
+      
 import { connect } from 'react-redux';
 import {withAuthRedirect} from '../Hoc/withAuthRedirect';
 import { compose } from 'redux';
@@ -27,7 +29,7 @@ class ContentContainer extends React.Component {
        
         return  <>
         <StatusComponentWithHooks {...this.props} /> 
-        {/* <StatusComponent {...this.props}/> */}
+         {/* <StatusComponent {...this.props}/>  */}
         <Content {...this.props}  />
                 
                 </>
@@ -43,7 +45,8 @@ class ContentContainer extends React.Component {
                 profile:state.dataPosts.profile,
                 userId:state.auth.userId,
                 isAuth:state.auth.isAuth,
-                status:state.dataPosts.status
+                status:state.dataPosts.status,
+                photo:state.dataPosts.photo
                 }    
     }
 
@@ -61,6 +64,9 @@ class ContentContainer extends React.Component {
                 },
                 updateStatusThunkCreate: (status) => {
                     dispatch(updateStatusThunkCreate(status));
+                },
+                UploadPhoto: (photo) => {
+                    dispatch(UploadPhoto(photo));
                 }
                
             }

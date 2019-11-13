@@ -9,7 +9,6 @@
     const TOGLE_IS_FETCHING = 'TOGLE-IS-FETCHING'
     const TOGLE_IS_FOLLOWING_PROGRESS = 'TOGLE-IS-FOLLOWING-PROGRESS'
 
-    let ava = "https://static.rfstat.com/renderforest/images/v2/landing-pics/logo_landing/ma5.png";
     let initialReducer = {
         arrayUsers:[ ],
         pageSize:10,

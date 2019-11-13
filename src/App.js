@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import Sitebar from "./Components/Sitebar/Sitebar"
-import {BrowserRouter, Route} from "react-router-dom"
+import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import ContentComponent from './Components/Content/ContentContainer';
-import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Content/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
@@ -12,7 +11,10 @@ import { connect } from "react-redux";
 import {getAuthThunkCreator} from './Redux/auth'
 import Preloader from './Components/Proloader/Preloader';
 import {initializeThunkCreator} from "./Redux/app-reducer";
-
+import { compose } from "redux";
+import {Provider} from "react-redux";
+import store from "./Redux/redux-store";
+import DialogsContainer from './Components/Dialogs/DialogsContainer' ;
 
 
 
@@ -30,7 +32,7 @@ class App extends React.Component{
           return <Preloader />
     } else {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
     <body className="grid">
        <HeaderContainer  />
        <Sitebar />
@@ -44,7 +46,7 @@ class App extends React.Component{
     </div>
       
     </body>
-    </BrowserRouter>
+   // </BrowserRouter>
   
   )
   }
@@ -58,4 +60,19 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getAuthThunkCreator, initializeThunkCreator }) (App)
+// export default connect(mapStateToProps, { getAuthThunkCreator, initializeThunkCreator }) (App)
+ 
+ let AppContainer = compose (
+  withRouter,
+  connect(mapStateToProps, { getAuthThunkCreator, initializeThunkCreator }) 
+) (App)
+
+let MainApp = (props) => {
+  return <BrowserRouter>
+  <Provider  store={store} >
+          <AppContainer />
+       </Provider>
+       </BrowserRouter>
+}
+
+export default MainApp

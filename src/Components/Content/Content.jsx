@@ -20,6 +20,12 @@ class Content extends React.Component {
     //         let text = this.newPostElement.current.value;
     //       this.props.updateNewPost(text);
     // }
+
+    onUploadPhoto = (event) => {
+        debugger
+    //   let photo = event.target...
+          //  this.props.onUploadPhoto(photo);
+    }
     
     
    
@@ -32,7 +38,7 @@ class Content extends React.Component {
                       <img className={classes.imgAvatar}src={!this.props.profile || !this.props.profile.photos.small  ? 
                         "https://png.pngtree.com/png-clipart/20190516/original/pngtree-users-vector-icon-png-image_3725294.jpg" 
                         : this.props.profile.photos.small}></img>  
-                      
+                        <div><input type="file" value="upload photo" onChange = {this.onUploadPhoto}  /></div>
                   </div>
                        <AddToPostForm onSubmit={this.addPost} />
                       <div>

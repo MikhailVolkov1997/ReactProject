@@ -1,11 +1,12 @@
-    import { getProfile, updateStatus, getStatus } from "../api/api";
-    import { async } from "q";
+    import { getProfile, updateStatus, getStatus, uploadPhoto } from "../api/api";
+    
 
         const ADD_POST = 'ADD-POST';
         const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
         const SET_USERS_PROFILE ="SET-USERS-PROFILE";
         const SET_STATUS = 'SET-STATUS';
         const DELETE_POST = "DELETE-POST";
+        const UPLOAD_PHOTO = "UPLOAD-PHOTO"
 
 
         let initialReducer = { arrayPosts : [
@@ -17,7 +18,8 @@
 
         ],
         profile:null,
-        status:""
+        status:"",
+        photo: ""
         }
 
 
@@ -56,6 +58,11 @@
                         ...state, 
                         arrayPosts: state.arrayPosts.filter(p => p.id != action.id)
                     }
+                case UPLOAD_PHOTO: 
+                    return {
+                            ...state, 
+                            photo: action.photo
+                }
                 
                 default: return state;
             }
@@ -89,6 +96,13 @@
             }
         }
 
+        export const uploadPhotoSucces = (photo) => {
+            return {
+                type:UPLOAD_PHOTO,
+                photo
+            }
+        }
+
     export const setUserProfileThunkCreate = (userId) => {
         return async (dispatch) => {
         let data = await getProfile(userId);
@@ -115,6 +129,17 @@
         return (dispatch) => {
         return getStatus(userId).then(data => {  
                 dispatch(setStatusAC(data.data));
+            })
+        }
+    }
+
+    export const UploadPhoto = (photo) => {
+
+        return (dispatch) => {
+            return uploadPhoto(photo).then(response => {
+                if(response.data.resultCode === 0) {
+                    dispatch(uploadPhotoSucces(response.data.data.photos));
+                }
             })
         }
     }
