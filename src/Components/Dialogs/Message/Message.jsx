@@ -4,15 +4,13 @@ import classes from "../Dialogs.module.css"
 const Message = (props) => {
 
     return (
-           <div>
-           <div className={classes.message} >
-                  {props.avatar}
-                  {props.message}
-                  
-                  
-           </div>
-           
-       </div>
+        <div>
+            <div className={classes.message} >
+                {props.avatar}
+                {props.message}
+            </div>
+
+        </div>
     )
 }
 

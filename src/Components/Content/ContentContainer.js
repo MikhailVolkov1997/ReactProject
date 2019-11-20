@@ -4,14 +4,11 @@ import {AddPostActionCreate,
      setUserProfileThunkCreate_2, 
      getStatusThunkCreate,
       updateStatusThunkCreate, 
-      UploadPhoto} from "../../Redux/Posts"
-      
+      UploadPhoto} from "../../Redux/Posts"    
 import { connect } from 'react-redux';
 import {withAuthRedirect} from '../Hoc/withAuthRedirect';
 import { compose } from 'redux';
 import StatusComponentWithHooks from './StatusComponentWithHooks';
-
-
 
 class ContentContainer extends React.Component {
     constructor(props) {
@@ -20,20 +17,15 @@ class ContentContainer extends React.Component {
 
     componentWillMount () {
        this.props.setUserProfileThunkCreate_2(this.props.userId);
-        this.props.getStatusThunkCreate(this.props.userId);
-       
-
+       this.props.getStatusThunkCreate(this.props.userId);
     }
 
     render() {
        
         return  <>
         <StatusComponentWithHooks {...this.props} /> 
-         {/* <StatusComponent {...this.props}/>  */}
-        <Content {...this.props}  />
-                
-                </>
-       
+        <Content {...this.props}  />            
+         </>
         }
     }
 
@@ -68,7 +60,6 @@ class ContentContainer extends React.Component {
                 UploadPhoto: (photo) => {
                     dispatch(UploadPhoto(photo));
                 }
-               
             }
     }
 

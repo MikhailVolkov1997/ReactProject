@@ -1,4 +1,4 @@
-import react from 'react'
+
 import postReducer, { AddPostActionCreate, deletePostActionCreate } from './Posts'
 
 let state = { arrayPosts : [
@@ -12,7 +12,6 @@ let state = { arrayPosts : [
 
 it("length of posts shoulded by incremented", () => {
     let action = AddPostActionCreate("hello react, I am cool programmer");
-    
     let newState = postReducer(state, action);
     expect(newState.arrayPosts.length).toBe(4);
 

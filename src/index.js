@@ -1,22 +1,18 @@
 
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import App from './App';
-    import * as serviceWorker from './serviceWorker';
-    import store from "./Redux/redux-store" 
-    import {Provider} from "react-redux";
-    import {BrowserRouter } from "react-router-dom"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
 import MainApp from './App';
 
-    
-    ReactDOM.render(
-     <MainApp/>,
-        document.getElementById('root'));
+
+ReactDOM.render(
+    <MainApp />,
+    document.getElementById('root'));
 
 
-     serviceWorker.unregister();
-    
-    
+serviceWorker.unregister();
 
-    
+
+
+
 
