@@ -1,0 +1,11 @@
+{
+  "dailySpinner": "/dailySpinner",
+  "winWheel": "/winWheel",
+  "grosvenorGoalsLogin": "/sport/grosvenor-goals/login",
+  "games": "/games/:gameName",
+  "nyePremium": "/nye-premium",
+  "nyeVip": "/nye-vip",
+  "grosvenorGiftsSilver": "/grosvenor-gifts-silver",
+  "grosvenorGiftsGold": "/grosvenor-gifts-gold",
+  "grosvenorGiftsRed": "/grosvenor-gifts-red",
+}
